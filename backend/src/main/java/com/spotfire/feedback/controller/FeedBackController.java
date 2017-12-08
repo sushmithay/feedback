@@ -1,13 +1,9 @@
 package com.spotfire.feedback.controller;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.spotfire.feedback.model.Customer;
 import com.spotfire.feedback.model.Feedback;
-import com.spotfire.feedback.model.FeedbackDTO;
 import com.spotfire.feedback.repository.CustomerRepository;
 import com.spotfire.feedback.repository.FeedbackRepository;
 
@@ -37,14 +32,14 @@ public class FeedBackController {
 		Customer cust = custRepository.findById(custId);
 		
 		String type = feedbackrequest.getFeedbackType();
-		String text = feedbackrequest.getFeedbackText();
+		String text = feedbackrequest.getFeedbackText().trim();
 		byte[] imageFile;
 		Feedback fd;
 		if(feedbackImage !=null) {
 			imageFile= feedbackImage.getBytes();		
-			 fd = new Feedback(text,type,cust,imageFile);
+			 fd = new Feedback(type,text,cust,imageFile);
 		}else {
-			 fd = new Feedback(text,type,cust);
+			 fd = new Feedback(type,text,cust);
 		}
 		
 		repository.save(fd);		

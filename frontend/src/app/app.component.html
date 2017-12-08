@@ -36,7 +36,11 @@
           <textarea style="background-color:white;" (change)="doTextareaValueChange($event)" rows="10" cols="60">                             
               {{textareaValue}}
           </textarea>
-          <button type="button" (click)="onInclude()"><span aria-hidden="true">&times;</span>Include Screenshot</button>
+          <div>
+              <form [formGroup]="form">
+                  <input type="checkbox" formControlName="include" (change)="onInclude()">Include Screenshot
+              </form>
+            </div>
           <div id="box1"></div>  
       </div>
       <div style="text-align: right;padding: 10px;">
