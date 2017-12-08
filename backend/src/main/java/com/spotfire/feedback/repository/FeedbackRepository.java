@@ -1,13 +1,15 @@
 package com.spotfire.feedback.repository;
+
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.spotfire.feedback.model.Customer;
+import com.spotfire.feedback.model.Feedback;
 
 @Repository
-public interface CustomerRepository extends CrudRepository<Customer, Long>{
-    List<Customer> findByLastName(String lastName);
-    Customer findById(long id);
+public interface FeedbackRepository extends CrudRepository<Feedback, Long>{
+
+	List<Feedback> findByCust(Customer cust);
 } 
