@@ -32,7 +32,11 @@ public class FeedBackController {
 		Customer cust = custRepository.findById(custId);
 		
 		String type = feedbackrequest.getFeedbackType();
-		String text = feedbackrequest.getFeedbackText().trim();
+		String text = "";
+		if(feedbackrequest.getFeedbackText() != null) {
+			text = feedbackrequest.getFeedbackText().trim();
+		}
+		
 		byte[] imageFile;
 		Feedback fd;
 		if(feedbackImage !=null) {
